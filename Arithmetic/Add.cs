@@ -28,12 +28,12 @@ namespace Arithmetic
 
             int[] cSeg = new int[bSeg.Length + 1];
 
-            for (int i = 0; i < aSeg.Length; i++)
+            for (int i = 0; i < aSeg.Length; i ++)
             {
                 cSeg[i] = aSeg[i] + bSeg[i];
             }
 
-            for (int i = aSeg.Length; i < bSeg.Length; i++)
+            for (int i = aSeg.Length; i < bSeg.Length; i ++)
             {
                 cSeg[i] = bSeg[i];
             }
@@ -67,6 +67,23 @@ namespace Arithmetic
         public static string bigIntMul(string a, string b)
         {
             int aSeg[], bSeg[];
+
+            ArithUtility.split(a);
+            ArithUtility.split(b);
+
+            int[] cSeg = new int[aSeg.Length + bSeg.Length + 1];
+
+            for (int i = 0; i < aSeg.Length; i ++)
+            {
+                for (int j = 0; j < bSeg.Length; j ++)
+                {
+                    cSeg[i + j] = aSeg[i] * bSeg[j];
+                }
+            }
+
+            ArithUtility.clear(ref cSeg);
+
+            return ArithUtility.arrToString(cSeg);
         }
     }
 }
